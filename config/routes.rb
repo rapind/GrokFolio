@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # public area
   map.root :controller => 'home', :action => 'index'
+  map.timestamp '/timestamp', :controller => 'home', :action => 'timestamp' # used to keep passenger spooled up in prod
   map.resources :sitemap
   map.resources :projects
   map.resources :recommendations

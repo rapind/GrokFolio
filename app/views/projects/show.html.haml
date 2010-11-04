@@ -1,7 +1,7 @@
 %div.body_part
   %h3= h(@project.title)
   %p
-    = image_tag(@project.image.url, :alt => h(@project.title), :style => 'float: right; margin: 0 0 5px 20px;')
+    = image_tag(@project.image.url, :alt => h(@project.title), :size => '300x200', :style => 'float: right; margin: 0 0 5px 20px;')
     = @project.description.markdown
   - if @project.url
     %p

@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
   named_scope :recent, :limit => 3, :order => :position
   
   has_attached_file :image,
-                    :styles => { :normal => "300x200#", :thumb => "100x85#" },
+                    :styles => { :normal => "300x225#", :small => "150x112#", :thumb => "100x75#" },
                     :default => :normal,
                     :path => ":rails_root/public/system/projects/:id.:extension",
                     :url => "/system/projects/:id.:extension"

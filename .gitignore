@@ -5,6 +5,7 @@ db/schema.rb
 db/*.sql
 db/*.bz2
 db/backup
+db/seeds.rb
 config/database.yml
 config/app_config.yml
 config/deploy.rb

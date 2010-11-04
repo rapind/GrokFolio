@@ -1,0 +1,22 @@
+-content_for :sidebar do
+  %h2 Projects
+  %p You can create a new project by clicking the "New Project" button.
+  %p You can edit a project by clicking it's "Edit" link.
+  %p You can delete a project by clicking the red X in the top right corner.
+  %p You can change the order in which projects appear by clicking and dragging their title bars.
+
+= build_link_button("New Project &raquo;", new_resource_path)
+  
+%p.clearfix
+
+%ul{ :id => 'position_container', :class => 'image_list' }
+  - for project in @projects
+    %li{ :id => "row_#{project.id}" }
+      .draggable
+        = truncate(project.title, :length => 22)
+        = link_to(image_tag('icons/cancel.png'), resource_path(project), :class => "delete")
+      = "#{link_to(image_tag(project.image.url(:thumb), :size => '150x100'), edit_resource_path(project))}<br />"
+      .actions
+        = link_to('Edit', edit_resource_path(project))
+        |
+        = link_to('Preview', project_path(project))

@@ -1,0 +1,12 @@
+- recommendation = Recommendation.random
+%h3 Recommended By
+%ul#recent_work
+  %li
+    %p
+      %i= "\"#{h(recommendation.body)}\""
+    %br
+    %p
+      %strong
+        = "#{h(recommendation.name)}, #{h(recommendation.title)}"
+        %br
+        = h(recommendation.company)

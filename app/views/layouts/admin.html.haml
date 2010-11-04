@@ -1,0 +1,54 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    %meta{ :content => "chrome=1", "http-equiv" => "X-UA-Compatible" }
+    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
+    %title
+      = "#{controller.controller_name.humanize.titleize} - Administration - #{APP_CONFIG[:name]}"
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'gritter.css', 'validationEngine.jquery.css', 'admin.css', :media => 'screen, projection', :cache => "admin_all"
+    = javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.6.custom.min.js', 'jquery.gritter.min.js', 'jquery.validationEngine.min.js', 'jquery.validationEngine-en.min.js', 'positioning.js', 'admin.js', :cache => "admin_all"
+    = display_flash
+    = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
+    = javascript_tag "var collection_path = '#{collection_path}/';" if defined?(collection_path)
+  %body
+    #container
+      #header
+        #logo
+          %h1= "#{h(APP_CONFIG[:name])} - Administration"
+        #nav
+          %ul.tabs
+            - if administrator_signed_in?
+              %li
+                = link_to "Projects", admin_projects_path, :class => "#{'active' if controller.controller_name == 'projects'}"
+              %li
+                = link_to "Recommendations", admin_recommendations_path, :class => "#{'active' if controller.controller_name == 'recommendations'}"
+              %li
+                = link_to "Logout", destroy_administrator_session_path
+            -else
+              %li
+                = link_to "Login", new_administrator_session_path, :class => "active"
+            %li
+              = link_to "Public Site &raquo;", root_path
+      #main
+        #sidebar
+          .box
+            -if @content_for_sidebar
+              = yield(:sidebar)
+            - else
+              %h2
+                Welcome
+              %p
+                This is the administration area for your site.
+              %p
+                Once you've logged in you can manage all of your projects and recommendations.
+              %p
+                This area is used to provide pertinent information about the tasks you're currently working on.
+        #content
+          = yield
+      #footer
+        %div
+          %hr
+          = "Copyright &copy; 2010, #{h(APP_CONFIG[:name])}, All Rights Reserved"

@@ -1,0 +1,15 @@
+# Be sure to restart your server when you modify this file.
+
+# Your secret key for verifying cookie session data integrity.
+# If you change this key, all old sessions will become invalid!
+# Make sure the secret is at least 30 characters and all random, 
+# no regular words or you'll be exposed to dictionary attacks.
+ActionController::Base.session = {
+  :key         => '_grokfolio_session',
+  :secret      => '7a4f1e16d950580779619807b169a1f941f388ea31e5c45756ada59d851e40bec1e94e9007d907a40adbcb57758c7ec4e5b3b8f12ecc49610d93ffa5e0511c29'
+}
+
+# Use the database for sessions instead of the cookie-based default,
+# which shouldn't be used to store highly confidential information
+# (create the session table with "rake db:sessions:create")
+# ActionController::Base.session_store = :active_record_store

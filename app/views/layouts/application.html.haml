@@ -1,0 +1,66 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    %meta{ :content => "chrome=1", "http-equiv" => "X-UA-Compatible" }
+    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
+    %title= @meta_title
+    %meta{ :name => 'keywords', :content => @meta_keywords }
+    %meta{ :name => 'description', :content => @meta_description }
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'application.css', :media => 'screen, projection'
+    = javascript_include_tag 'jquery-1.4.2.min.js', 'application.js', :cache => "admin_all"
+    = display_flash
+  %body
+    #container
+      #header
+        #logo
+          %h1= link_to("#{h(APP_CONFIG[:name])} &raquo;", root_path)
+        #nav
+          %ul.tabs
+            %li= link_to 'Portfolio', projects_path, :class => "#{'active' if controller.controller_name == 'projects'}"
+            %li= link_to 'Blog', h(APP_CONFIG[:blog])
+            %li= link_to 'Github', h(APP_CONFIG[:github])
+            %li.last= link_to 'Resum&eacute;', h(APP_CONFIG[:linkedin])
+      #intro
+        %h2= h(@intro)
+      #main
+        #content= yield
+        #sidebar
+          -if @content_for_sidebar
+            = yield(:sidebar)
+          - else
+            = render :partial => 'recommendations/random'
+          #contact
+            %h3 Contact Info
+            %p
+              %strong 
+                = h(APP_CONFIG[:name])
+                %br
+                = enkode_mail( APP_CONFIG[:email], APP_CONFIG[:email], title_text='Contact', subject=nil )
+                %br
+                = enkode(APP_CONFIG[:phone])
+      #footer
+        %span#footer_text
+          = "Copyright &copy; 2010 #{APP_CONFIG[:name]}, All Rights Reserved. This project has been open-sourced at"
+          = link_to('Grokfolio on Github', 'http://github.com/rapind/grokfolio')
+          %br
+          Built with 
+          = link_to('Ruby on Rails.', 'http://rubyonrails.org/')
+          Served by 
+          = link_to('Phusion Passenger', 'http://www.modrails.com')
+          on
+          = link_to('Ubuntu Linux', 'http://www.ubuntu.com')
+          at
+          = link_to('Linode.', 'http://www.linode.com')
+          
+    :javascript
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("#{APP_CONFIG[:google_analytics_key]}");
+      pageTracker._trackPageview();
+      } catch(err) {}

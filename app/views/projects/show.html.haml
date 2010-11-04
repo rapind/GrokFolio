@@ -1,0 +1,14 @@
+%div.body_part
+  %h3= h(@project.title)
+  %p
+    = image_tag(@project.image.url, :alt => h(@project.title), :style => 'float: right; margin: 0 0 5px 20px;')
+    = @project.description.markdown
+  - if @project.url
+    %p
+      %strong
+        See it in action:
+        = link_to(h(@project.url), h(@project.url))
+      %br
+      %br
+  %p
+    %strong= link_to('&laquo; Back to Portfolio', projects_path)

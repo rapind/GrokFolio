@@ -1,0 +1,13 @@
+.DS_Store
+log/*.*
+tmp/**/*
+db/schema.rb
+db/*.sql
+db/*.bz2
+db/backup
+config/database.yml
+config/app_config.yml
+config/deploy.rb
+config/initializers/session_store.rb
+public/system
+photoshop

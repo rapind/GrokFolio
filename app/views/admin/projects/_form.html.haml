@@ -1,0 +1,41 @@
+-content_for :sidebar do
+  %h2 Project
+  %p Your projects are where you showcase your work.
+  %p= "Click the \"#{(controller.action_name == 'new') ? 'Create' : 'Update'}\" button when you're done."
+  
+= f.error_messages
+%div{ :style => "width:50%; float:left;" }
+  %p
+    = f.label :title
+    = f.text_field :title, :class => 'text validate[required,length[2,128]]'
+  %p
+    = f.label :url
+    = f.text_field :url, :class => 'text validate[optional,length[7,255]]'
+  %p
+    = f.label :image, "Upload Project Image (Should be 275x200 pixels)"
+    = f.file_field :image, :class => 'text'
+  
+%div{ :style => "width:50%; float:left;" }
+  %p
+    = image_tag(@project.image.url) if @project.image.file?
+    
+%div{ :style => "width:100%; float:left;" }
+  %p
+    = f.label :intro
+    = f.text_field :intro, :class => 'text long validate[required,length[3,200]]'
+  %p
+    = f.label :description
+    = f.text_area :description, :class => 'brief validate[required,length[5,1000]]'
+  %p
+    = f.label :meta_title
+    = f.text_field :meta_title, :class => 'text long validate[optional,length[3,255]]'
+  %p
+    = f.label :meta_keywords
+    = f.text_field :meta_keywords, :class => 'text long validate[optional,length[3,255]]'
+  %p
+    = f.label :meta_description
+    = f.text_field :meta_description, :class => 'text long validate[optional,length[3,255]]'
+
+  %p.buttons
+    = build_submit_button((controller.action_name == 'new') ? 'Create' : 'Update')
+

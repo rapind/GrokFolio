@@ -1,0 +1,90 @@
+set :use_sudo, false
+
+set :application, 'grokfolio' # TODO - change this to your app name
+set :user, 'deploy'
+set :deploy_to, "/var/www/#{application}"
+
+# using git
+set :scm, :git
+set :repository,  "git@github.com:rapind/grokfolio.git"
+set :branch, 'master'
+set :deploy_via, :remote_cache
+
+set :domain, 'grokfolio.com' # TODO - change this to your app domain
+role :app, domain
+role :web, domain
+role :db, domain, :primary => true
+
+#after tasks
+after 'deploy:symlink', 'custom_symlinks:link_shared', 'cache:clear'
+
+#############################################################
+#	mod_rails / Passenger
+#############################################################
+
+namespace :mod_rails do
+  desc 'Restart the application altering tmp/restart.txt for mod_rails.'
+  task :restart, :roles => :app do
+    run "touch  #{current_path}/tmp/restart.txt"
+    # releases old spawn server for conserving memory during deployment
+    # run "kill $( passenger-memory-stats | grep 'Passenger spawn server' | awk '{ print $1 }' )"
+  end
+end
+
+namespace :deploy do
+  %w(start restart).each { |name| task name, :roles => :app do mod_rails.restart end }
+end
+
+#############################################################
+#	Symlinks
+#############################################################
+namespace :custom_symlinks do
+  desc 'Symlink shared files / dirs. Database settings, app config, gems, etc.'
+  task :link_shared do
+    run "ln -nsf #{shared_path}/database.yml #{current_path}/config/database.yml"
+    run "ln -nsf #{shared_path}/app_config.yml #{current_path}/config/app_config.yml"
+    run "ln -nsf #{shared_path}/sessions_store.rb #{current_path}/config/initializers/session_store.rb"
+    run "ln -nsf #{shared_path}/system #{current_path}/public/system"
+  end
+end
+
+#############################################################
+#	Cache
+#############################################################
+namespace :cache do
+  desc 'Clear the cache'
+  task :clear do
+    run("cd #{deploy_to}/current && /opt/ruby/bin/rake cache:clear RAILS_ENV=production")
+  end
+end
+
+#############################################################
+#	Backup
+#############################################################
+namespace :backup do
+  
+  desc 'Download production db dump and shared assets'
+  task :bootstrap do
+    self.db
+    self.attachments
+  end
+
+  desc 'Backup and grab the database'
+  task :db, :roles => :db, :only => { :primary => true } do
+    filename = "/tmp/#{application}.dump.#{Time.now.to_f}.sql.bz2" 
+    on_rollback { delete filename }
+    run "mysqldump -u root #{application} | bzip2 -c > #{filename}" 
+    get filename, "#{File.dirname(__FILE__)}/../db/backup.sql.bz2" 
+    run "rm -rf filename"
+  end
+  
+  desc 'Download a tarball of the public/system dir (uploads)'
+  task :attachments, :roles => :app do
+    filename = "/tmp/#{application}-system.#{Time.now.to_f}.tar.bz2" 
+    on_rollback { run "rm -rf #{filename}" }
+    run "tar -cjf #{filename} -C #{shared_path}/system ."
+    get filename, "#{File.dirname(__FILE__)}/../public/system/backup.tar.bz2" 
+    run "rm -rf #{filename}"
+  end
+
+end

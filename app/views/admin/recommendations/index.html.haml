@@ -1,0 +1,20 @@
+-content_for :sidebar do
+  %h2 Recommendations
+  %p You can create a new recommendation by clicking the "New Recommendation" button.
+  %p You can edit a recommendation by clicking it's "Edit" link.
+  %p You can delete a recommendation by clicking the red X in the top right corner.
+  %p You can change the order in which recommendations appear by clicking and dragging their title bars.
+
+= build_link_button("New Recommendation &raquo;", new_resource_path)
+  
+%p.clearfix
+
+%ul{ :id => 'position_container', :class => 'image_list' }
+  - for recommendation in @recommendations
+    %li{ :id => "row_#{recommendation.id}" }
+      .draggable
+        = truncate(h(recommendation.name), :length => 22)
+        = link_to(image_tag('icons/cancel.png'), resource_path(recommendation), :class => "delete")
+      %p{ :style => 'margin: 5px;' }= "#{link_to(truncate(h(recommendation.body), :length => 230), edit_resource_path(recommendation))}<br />"
+      .actions
+        = link_to('Edit', edit_resource_path(recommendation))

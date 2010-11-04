@@ -1,0 +1,168 @@
+@import "plugins/_reset.css";
+@import "plugins/_clearfix.css";
+
+/* COLORS */
+@background-color: #fff;
+@content-color: #333;
+@shading: #aaa;
+@main: #665b4d;
+
+body {
+	background-color: @background-color;
+	color: @content-color;
+	font: normal 13px arial;
+}
+p {
+  padding-bottom: 5px;
+}
+a {
+  color: #444;
+  text-decoration: none;
+}
+a:hover {
+  color: #bd3c14;
+}
+h1 {
+	float: left;
+	font: normal 26px arial;
+	padding: 7px 16px;
+	color: #fff;
+	background-color: #222;
+	a {
+		color: #fff;
+	}
+	a:hover {
+		color: #fff;
+		background-color: #bd3c14;
+	}
+}
+h1:hover {
+	background-color: #bd3c14;
+}
+h2 {
+  font: normal 40px georgia;
+  padding: 30px 150px 30px 0;
+  color: #000;
+}
+h3 {
+  font: normal 24px georgia;
+  padding: 30px 0 12px 0;
+  color: #000;
+  a { color: #000; }
+}
+#sidebar h3 {
+  font: normal 20px arial;
+}
+h4 {
+  font: normal 14px arial;
+  padding: 0 0 5px 0;
+  color: #000;
+  a { color: #000; }
+}
+p {
+  line-height: 20px;
+}
+img {
+  border: 1px solid #888;
+}
+#container {
+  margin: 20px auto 10px auto;
+  width: 960px;
+}
+#header {
+  float: left;
+  width: 960px;
+  padding: 30px 0 30px 0;
+  border-bottom: dotted 1px @shading;
+}
+#logo {
+  float: left;
+  width: 200px;
+}
+#nav {
+  float: left;
+  width: 760px;
+}
+#header ul {
+	margin: 15px 0 0 20px;
+	font-size: 18px;
+	float: left;
+	padding: 0;
+	a {
+		text-decoration: none;
+	}
+	a.active {
+		color: #bd3c14;
+		border-bottom: 1px dotted @shading;
+	}
+}
+#header li {
+	float: left;
+	list-style: none;
+	display: inline;
+	padding: 0 10px;
+	border-right: 1px solid @shading;
+}
+#header li.last {
+	border-right: none;
+	padding-right: 0px;
+}
+#main {
+  float: left;
+  width: 960px;
+  margin-top: 10px;
+}
+#intro {
+  float: left;
+  width: 960px;
+  border-bottom: dotted 1px @shading;
+}
+#content {
+  float: left;
+  width: 609px;
+  padding: 0 40px 30px 0;
+  border-right: dotted 1px @shading;
+  img { border: 1px solid #888; }
+}
+#sidebar {
+  float: left;
+  width: 280px;
+  padding: 0 0 20px 30px;
+}
+#contact {
+  float: left;
+  width: 280px;
+  padding-top: 10px;
+}
+#footer {
+  float: left;
+  width: 960px;
+  border-top: 1px dotted @shading;
+  padding: 20px 0;
+  font: normal 11px arial;
+  line-height: 14px;
+  a { color: #bd3c14; }
+  span {
+    display: block;
+    float: left;
+  }
+}
+.body_part {
+  float: left;
+  width: 609px;
+}
+ul#recent_work {
+  padding: 0;
+  margin: 0;
+  li {
+    float: left;
+    width: 280px;
+  	list-style: none;
+  	padding: 0 0 20px 0;
+  }
+  img {
+    float:left;
+    margin: 0 10px 10px 0;
+    border: 1px solid #888;
+  }
+}

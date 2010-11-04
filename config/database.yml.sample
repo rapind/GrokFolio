@@ -1,0 +1,17 @@
+common: &common
+  adapter: mysql
+  username: root
+  password: 
+  database: grokfolio
+  
+development:
+  <<: *common
+  socket: /tmp/mysql.sock
+
+test: &TEST
+  <<: *common
+  socket: /tmp/mysql.sock
+
+production:
+  <<: *common
+  socket: /var/run/mysqld/mysqld.sock

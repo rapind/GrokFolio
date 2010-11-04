@@ -1,0 +1,22 @@
+-content_for :sidebar do
+  %h2 Sign in
+  %p Enter your email address and password to sign in.
+  %p
+    If you came here by mistake, please head back to the
+    = link_to 'public site.', root_path
+  
+- form_for resource_name, resource, :url => session_path(resource_name) do |f|
+  %p
+    = f.label :email
+    = f.text_field :email, :class => 'text'
+  %p
+    = f.label :password
+    = f.password_field :password, :class => 'text'
+
+  - if devise_mapping.rememberable?
+    %p
+      = f.label :remember_me
+      = f.check_box :remember_me
+      
+  %p.buttons
+    = build_submit_button('Sign In')

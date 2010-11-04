@@ -43,7 +43,7 @@ namespace :custom_symlinks do
   task :link_shared do
     run "ln -nsf #{shared_path}/database.yml #{current_path}/config/database.yml"
     run "ln -nsf #{shared_path}/app_config.yml #{current_path}/config/app_config.yml"
-    run "ln -nsf #{shared_path}/sessions_store.rb #{current_path}/config/initializers/session_store.rb"
+    run "ln -nsf #{shared_path}/session_store.rb #{current_path}/config/initializers/session_store.rb"
     run "ln -nsf #{shared_path}/system #{current_path}/public/system"
   end
 end

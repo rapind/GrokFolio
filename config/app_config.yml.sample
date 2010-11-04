@@ -7,8 +7,6 @@ common: &common
   linkedin: TODO your linkedin url goes here
   google_analytics_key: TODO your analytics key goes here
   google_verification_key: TODO your webmaster tools key goes here
-  system_email: TODO your gmail address goes here
-  system_email_pwd: TODO your gmail password goes here
   default_meta_title: TODO your default page title goes here
   default_meta_keywords: TODO your default meta keywords go here
   default_meta_description: TODO your default meta description goes here

@@ -5,3 +5,5 @@
       = link_to(image_tag(project.image.url(:thumb), :size => '100x75', :alt => h(project.title)), project_path(project))
       %h4= link_to(h(project.title), project_path(project))
       %p= link_to(h(project.intro), project_path(project))
+%p
+  %strong= link_to('More projects &raquo;', projects_path)

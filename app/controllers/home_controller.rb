@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   
-  #caches_page :index, :expires_in => 2.days
+  caches_action :index, :expires_in => 24.hours
   
   def index
   end

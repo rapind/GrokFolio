@@ -28,10 +28,11 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 # memcache store
-config.cache_store = :mem_cache_store, "localhost", { :namespace => 'grokfolio' }
+config.cache_store = :mem_cache_store, "localhost", { :namespace => 'grokfolio' } # TODO - change this to your app name if you want
 
-config.action_mailer.default_url_options = { :host => 'rapin.com' }
+config.action_mailer.default_url_options = { :host => 'grokfolio.com' } # TODO - change this to your domain
 
+# These are paths for imagemagick to fix potential paperclip issues. You may not need them.
 ENV['PATH'] = "#{ENV['PATH']}:/usr/local/bin"
 ENV['LD_LIBRARY_PATH'] = "#{ENV['LD_LIBRARY_PATH']}:/usr/local/lib"
 

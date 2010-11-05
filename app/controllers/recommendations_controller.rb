@@ -2,6 +2,8 @@ class RecommendationsController < ApplicationController
   inherit_resources
   actions :index
   
+  caches_action :index, :cache_path => Proc.new { |c| c.params }, :expires_in => 24.hours
+  
   def index
     index! do
       @meta_title = "Recommendations - #{APP_CONFIG[:name]}"

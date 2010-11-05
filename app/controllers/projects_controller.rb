@@ -2,6 +2,9 @@ class ProjectsController < ApplicationController
   inherit_resources
   actions :index, :show
   
+  #caches_action :index, :cache_path => Proc.new { |c| c.params }, :expires_in => 24.hours
+  #caches_action :show, :cache_path => Proc.new { |c| c.params }, :expires_in => 24.hours
+  
   def index
     index! do
       @meta_title = "Projects - #{APP_CONFIG[:name]}"

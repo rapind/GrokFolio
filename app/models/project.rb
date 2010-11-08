@@ -13,8 +13,8 @@ class Project < ActiveRecord::Base
   has_attached_file :image,
                     :styles => { :normal => "300x225#", :small => "150x112#", :thumb => "100x75#" },
                     :default => :normal,
-                    :path => ":rails_root/public/system/projects/:project_id/:basename_:style.:extension",
-                    :url => "/system/projects/:project_id/:basename_:style.:extension"
+                    :path => ":rails_root/public/system/projects/:id_:basename_:style.:extension",
+                    :url => "/system/projects/:id_:basename_:style.:extension"
   
   # title is our slug / permalink
   has_friendly_id :title, :use_slug => true

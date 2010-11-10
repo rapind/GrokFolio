@@ -1,9 +1,9 @@
 %div.body_part
   %h3= h(@project.title)
   %p
-    = image_tag(@project.image.url, :alt => h(@project.title), :size => '300x200', :style => 'float: right; margin: 0 0 5px 20px;')
+    = link_to(image_tag(@project.image.url, :alt => h(@project.title), :size => '300x200', :style => 'float: right; margin: 0 0 5px 20px;'), h(@project.url))
     = @project.description.markdown
-  - if @project.url
+  - unless @project.url.blank?
     %p
       %strong
         See it in action:

@@ -9,15 +9,7 @@ module ApplicationHelper
       html = "<script type=\"text/javascript\">\n$(document).ready(function() {\n"
       flash.each do |key,value|
         if !value.blank?
-          if controller.controller_name == 'products' and controller.action_name == 'show'
-            if key.to_s == 'warning'
-              html = "#{html}\n$('.flash_warning').show();\n$('.flash_warning span').html('#{value.gsub('"', '\\"')}');"
-            else
-              html = "#{html}\n$('.flash_notice').show();\n$('.flash_notice span').html('#{value.gsub('"', '\\"')}');"
-            end
-          else
-            html = "#{html}$.gritter.add({ \ntitle: \"#{key.to_s.capitalize}\", \ntext: \"#{value.gsub('"', '\\"')}\", \nimage: \"/images/icons/#{key.to_s}.png\", \ntime: 4000 \n});\n"
-          end
+          html = "#{html}$.gritter.add({ \ntitle: \"#{key.to_s.capitalize}\", \ntext: \"#{value.gsub('"', '\\"')}\", \nimage: \"/images/icons/#{key.to_s}.png\", \ntime: 4000 \n});\n"
         end
       end
       html = "#{html}});\n</script>"

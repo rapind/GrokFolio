@@ -8,7 +8,7 @@
       = "#{controller.controller_name.humanize.titleize} - Administration - #{APP_CONFIG[:name]}"
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'gritter.css', 'validationEngine.jquery.css', 'admin.css', :media => 'screen, projection', :cache => "admin_all"
+    = stylesheet_link_tag 'gritter.css', 'validation.css', 'admin.css', :media => 'screen, projection', :cache => "admin_all"
     = javascript_include_tag 'jquery-1.4.2.min.js', 'jquery-ui-1.8.6.custom.min.js', 'jquery.gritter.min.js', 'jquery.validationEngine.min.js', 'jquery.validationEngine-en.min.js', 'positioning.js', 'admin.js', :cache => "admin_all"
     = display_flash
     = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?

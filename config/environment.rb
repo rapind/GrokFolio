@@ -14,8 +14,7 @@ Rails::Initializer.run do |config|
   config.gem 'inherited_resources', :version => "= 0.9.5" # 1.0 & 1.1 are broken in rails 2.3.x
   config.gem 'will_paginate', :version => "= 2.3.12"
   config.gem 'devise', :version => "= 1.0.8"
-  config.gem 'haml', :version => "= 2.2.19"
-  config.gem 'less', :version => "= 1.2.21"
+  config.gem 'haml', :version => "= 3.0.22"
   config.gem 'friendly_id', :version => "= 3.1.7"
   config.gem 'paperclip', :version => "= 2.3.4"
   config.gem 'memcache-client', :version => "= 1.8.2", :lib => "memcache"

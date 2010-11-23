@@ -3,11 +3,13 @@
   %head
     %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
     %meta{ :content => "chrome=1", "http-equiv" => "X-UA-Compatible" }
-    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
+    %link{ :rel => 'shortcut icon', :href => '/favicon.ico' }
+    %link{ :rel => 'meta', :title => 'FOAF', :type => 'application/rdf+xml', :href => '/foaf.rdf' }
     %title= @meta_title
     %meta{ :name => 'keywords', :content => @meta_keywords }
     %meta{ :name => 'description', :content => @meta_description }
     %meta{ :name => 'google-site-verification', :content => APP_CONFIG[:google_verification_key] }
+    
     /[if lt IE 8]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
     = stylesheet_link_tag 'application.css', :media => 'screen, projection'

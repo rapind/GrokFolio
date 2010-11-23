@@ -12,3 +12,4 @@ config/deploy.rb
 config/initializers/session_store.rb
 public/system
 photoshop
+public/foaf.rdf
